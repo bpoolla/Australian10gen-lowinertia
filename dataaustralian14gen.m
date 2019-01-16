@@ -292,11 +292,12 @@ alpha(16:30)=0*1e8*ones(15,1);
 nred=90;
 
 %PLL parameters
-% Kp=.01; %original 180
-% Ki=.007; %original 3200
-PLL_Ki=2;
-PLL_Kp=500;
-visat=40*1e6;% original 100 MW
+PLL_Ki=2/500;
+PLL_Kp=2/500;
+PLL_tau=1/500;
+
+
+visat=inf;%(40+2.9)*1e6;
 Isel=eye(2*15);
 Isel_forming=eye(3*15);
 
@@ -309,25 +310,42 @@ thetavsc0(6)=-6.3379;
 thetavsc0(7)=4.7928;
 thetavsc0(8)=3.6837;
 thetavsc0(9)=-1.0986;
-thetavsc0(10)=23.5812;
+thetavsc0(10)=20.7;
 thetavsc0(11)=10.5944;
-thetavsc0(12)=2.8249;
+thetavsc0(12)=1.8335;
 thetavsc0(13)=-12.7055;
 thetavsc0(14)=-12.4459;
 thetavsc0(15)=-14.7643;
 
 Kvsc(1,:)=1*ones(1,15);
 Kvsc(2,:)=1*ones(1,15);
-Kvsc=0*Kvsc;
 
 dist.inp=zeros(6,1);
 dist.sc=ones(6,1);
 dist.time=50;
 
 
-r_fil=5e-1*ones(15,1); % 5e-1
-l_fil=5e-3*ones(15,1); % 5e-3
-c_fil=1e-5*ones(15,1); % 1e-5
+
+c_fil=1e-5; % 1e-5
+r_fil=5e-1;
+l_fil=5e-3;
+
 
 % Grid forming
-Pinit=[0.405553120017514,0.262363656270440,0.245287066765904,0.511573619715646,0.238910511748616,0.266289198874107,0.405451933295266,0.301363467877759,0.299904641553078,0.238601214125575,0.201576196829353,0.166515071179716,0.281316548159335,0.249279775700722,0.436119451429005];
+Pinit=zeros(15,1);
+
+Vbase(1)=15e3;
+Vbase(2)=20e3;
+Vbase(3)=20e3;
+Vbase(4)=20e3;
+Vbase(5)=20e3;
+Vbase(6)=20e3;
+Vbase(7)=15e3;
+Vbase(8)=20e3;
+Vbase(9)=20e3;
+Vbase(10)=20e3;
+Vbase(11)=20e3;
+Vbase(12)=20e3;
+Vbase(13)=20e3;
+Vbase(14)=20e3;
+Vbase(15)=15e3;
